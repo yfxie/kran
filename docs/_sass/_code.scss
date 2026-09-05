@@ -1,0 +1,117 @@
+@use "variables" as *;
+
+.content code {
+  font-family: $mono;
+  font-size: 0.86em;
+  background: rgba(252, 252, 254, 0.05);
+  border: 1px solid $line;
+  border-radius: 6px;
+  padding: 0.08em 0.34em;
+  color: #e2dfe5;
+  word-break: break-word;
+}
+
+figure.code {
+  margin: 0 0 20px;
+  border: 1px solid $line;
+  border-radius: 8px;
+  background: $code-bg;
+  overflow: hidden;
+}
+
+.code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 32px;
+  padding: 0 6px 0 13px;
+  border-bottom: 1px solid $line;
+  background: $surface;
+}
+
+.code-lang {
+  font: 500 11px/1 $mono;
+  letter-spacing: 0.05em;
+  color: $ink-3;
+}
+
+.code-copy {
+  font: 500 11px/1 $sans;
+  color: $ink-2;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+
+  &:hover {
+    color: $accent-text;
+    background: $accent-wash;
+    border-color: $accent-line;
+  }
+
+  &[data-copied] {
+    color: $accent-text;
+    border-color: $accent-line;
+  }
+}
+
+div.highlighter-rouge {
+  margin: 0;
+}
+
+// A code block the script did not wrap, e.g. with JavaScript off.
+.content div.highlighter-rouge {
+  border: 1px solid $line;
+  border-radius: 8px;
+  background: $code-bg;
+  margin-bottom: 20px;
+}
+
+figure.code div.highlighter-rouge {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  margin-bottom: 0;
+}
+
+.content pre {
+  margin: 0;
+  padding: 13px 14px;
+  overflow-x: auto;
+  background: transparent;
+  scrollbar-width: thin;
+  scrollbar-color: $line-2 transparent;
+}
+
+.content pre code {
+  font-size: 13px;
+  line-height: 1.7;
+  background: none;
+  border: 0;
+  padding: 0;
+  white-space: pre;
+  word-break: normal;
+  color: #d4d4d4;
+}
+
+// Program output is reproduced exactly as kran prints it, so it cannot take
+// the backslash continuations a typed command can. It soft-wraps instead.
+// `hanging each-line` indents only the soft-wrapped continuations: lines after
+// a real newline stay flush, so a wrap never reads as a new line of output.
+// (`hanging` on its own would indent every line but the block's first.)
+//
+// The wrap covers the whole console block rather than just .go, because Rouge's
+// console lexer reads any printed line containing a `$` -- `pod=$(kubectl ...)`
+// -- as a prompt and marks it as a command. Typed lines are hand-wrapped to 76
+// columns with backslashes and a `>` continuation prompt, so they never reach
+// the wrap width. Every other language keeps `pre` and scrolls.
+.language-console pre {
+  text-indent: 2ch hanging each-line;
+}
+
+.language-console pre code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

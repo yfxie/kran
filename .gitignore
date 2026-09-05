@@ -1,0 +1,4 @@
+/pkg/
+/docs/_site/
+/docs/.jekyll-cache/
+/.ruby-lsp/

@@ -1,0 +1,37 @@
+{%- comment -%}
+Previous/next from the same nav data that builds the sidebar, so the reading
+order and the sidebar order can never drift apart.
+{%- endcomment -%}
+{%- assign flat = "" | split: "" -%}
+{%- for group in site.data.nav -%}{%- assign flat = flat | concat: group.items -%}{%- endfor -%}
+{%- assign found = false -%}
+{%- assign prev_item = false -%}
+{%- assign next_item = false -%}
+{%- assign hold = false -%}
+{%- for item in flat -%}
+  {%- assign item_url = lang_prefix | append: item.path -%}
+  {%- if found and next_item == false -%}{%- assign next_item = item -%}{%- endif -%}
+  {%- if item_url == page.url -%}
+    {%- assign found = true -%}
+    {%- assign prev_item = hold -%}
+  {%- endif -%}
+  {%- assign hold = item -%}
+{%- endfor -%}
+{%- if prev_item or next_item %}
+<nav class="pager" aria-label="{{ t.on_this_site }}">
+  {%- if prev_item %}
+  <a class="pager-link pager-prev" href="{{ lang_prefix | append: prev_item.path | relative_url }}">
+    <span class="pager-kind">{{ t.previous }}</span>
+    <span class="pager-title">{{ prev_item.title[page.lang] }}</span>
+  </a>
+  {%- else %}
+  <span></span>
+  {%- endif %}
+  {%- if next_item %}
+  <a class="pager-link pager-next" href="{{ lang_prefix | append: next_item.path | relative_url }}">
+    <span class="pager-kind">{{ t.next }}</span>
+    <span class="pager-title">{{ next_item.title[page.lang] }}</span>
+  </a>
+  {%- endif %}
+</nav>
+{%- endif -%}

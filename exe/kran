@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require "kran"
+
+begin
+  Kran::CLI::Main.start
+rescue Kran::Error => error
+  warn("ERROR: #{error.message}")
+  exit(1)
+end

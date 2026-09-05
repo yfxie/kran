@@ -1,0 +1,52 @@
+# Name of the container image, without registry and tag.
+# The tag comes from `kran deploy --version`, or from git HEAD when omitted.
+image: my-user/my-app
+
+# Where the image is pushed. Leave username and password out to reuse the login docker already
+# has on this machine; set both, in CI for example, and `docker login` runs before every push.
+registry:
+  # Leave empty for Docker Hub.
+  server: ghcr.io
+  # username: my-user
+  # This file is ERB, so the password can come from the environment or any Ruby expression.
+  # password: <%= ENV["KRAN_REGISTRY_PASSWORD"] %>
+  # Or read it from krane's secrets.ejson (a dotted path from the top of the decrypted file):
+  # password:
+  #   ejson: registry.password
+
+# How the image is built.
+builder:
+  # One or more of amd64, arm64. Becomes `docker build --platform linux/<arch>[,linux/<arch>]`.
+  arch: amd64
+  # Build on another Docker host over SSH. Sets DOCKER_HOST for `docker login` and `docker build`.
+  # remote: ssh://user@builder.example.com
+  # Build context. Defaults to the current directory, so uncommitted changes are included.
+  # context: .
+
+# Cluster and namespace that every command targets.
+kubernetes:
+  # Defaults to the KUBECONFIG environment variable, then ~/.kube/config.
+  # kubeconfig: ~/.kube/my-cluster.yml
+  context: my-cluster
+  namespace: my-app
+
+# How krane is invoked.
+krane:
+  # Directory of krane templates, passed to `krane render -f`.
+  templates: config/deploy
+  # ejson file passed to `krane deploy -f`. Defaults to <templates>/secrets.ejson when it exists.
+  # secrets: config/deploy/secrets.ejson
+  # Command used to run krane. Override when krane lives in a Gemfile.
+  # command: bundle exec krane
+
+# Pods used by logs and exec.
+app:
+  # Label selector for the application pods (kubectl -l).
+  selector: app=my-app
+  # Container inside the pod (kubectl -c). Defaults to the pod's default container.
+  # container: web
+
+# Shortcuts run with `kran <alias>`. Extra arguments are appended to the command.
+aliases:
+  shell: exec --interactive bash
+  console: exec --interactive bin/rails console

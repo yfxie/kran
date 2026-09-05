@@ -1,0 +1,8 @@
+source "https://rubygems.org"
+
+# The site is built here and published as a static artifact by GitHub Actions,
+# so it is not tied to the Jekyll version GitHub's own branch builds run.
+gem "jekyll", "~> 4.4"
+
+# Required by `jekyll serve` since Ruby 3.0 dropped WEBrick from the stdlib.
+gem "webrick"

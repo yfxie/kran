@@ -1,0 +1,148 @@
+@use "variables" as *;
+
+// Rouge token colours, taken from the syntax palette measured on
+// openrouter.ai's dark code blocks. Every colour clears 4.5:1 against the
+// #0b0c0e card.
+
+$tok-default: #d4d4d4;
+$tok-comment: #7cab68;
+$tok-keyword: #c586c0;
+$tok-control: #569cd6;
+$tok-string: #ce9178;
+$tok-number: #b5cea8;
+$tok-function: #dcdcaa;
+$tok-name: #9cdcfe;
+$tok-type: #4ec9b0;
+$tok-constant: #4fc1ff;
+$tok-error: #f0776c;
+
+// console blocks: the prompt is chrome and the output is secondary, so both
+// sit below the command text in weight.
+$tok-prompt: #82888a;
+$tok-output: #9ba1a3;
+
+.highlight {
+  color: $tok-default;
+
+  .c,
+  .ch,
+  .cd,
+  .cm,
+  .c1,
+  .cs,
+  .cp,
+  .cpf {
+    color: $tok-comment;
+    font-style: italic;
+  }
+
+  .k,
+  .kc,
+  .kd,
+  .kn,
+  .kp,
+  .kr,
+  .kv {
+    color: $tok-keyword;
+  }
+
+  .kt,
+  .nc,
+  .ne {
+    color: $tok-type;
+  }
+
+  .s,
+  .sa,
+  .sb,
+  .sc,
+  .dl,
+  .sd,
+  .s2,
+  .se,
+  .sh,
+  .si,
+  .sx,
+  .sr,
+  .s1,
+  .ss {
+    color: $tok-string;
+  }
+
+  .m,
+  .mb,
+  .mf,
+  .mh,
+  .mi,
+  .mo,
+  .il {
+    color: $tok-number;
+  }
+
+  .na,
+  .nt,
+  .nl,
+  .py,
+  .nv,
+  .vc,
+  .vg,
+  .vi {
+    color: $tok-name;
+  }
+
+  .nb,
+  .bp,
+  .nf,
+  .fm,
+  .nd {
+    color: $tok-function;
+  }
+
+  .nn,
+  .no {
+    color: $tok-constant;
+  }
+
+  .o,
+  .ow,
+  .p,
+  .pi {
+    color: $tok-control;
+  }
+
+  .err {
+    color: $tok-error;
+  }
+
+  .gd {
+    color: $tok-error;
+    background: rgba(240, 119, 108, 0.12);
+  }
+
+  .gi {
+    color: $tok-comment;
+    background: rgba(124, 171, 104, 0.12);
+  }
+
+  .gp {
+    color: $tok-prompt;
+    user-select: none;
+  }
+
+  .go {
+    color: $tok-output;
+  }
+
+  .gh,
+  .gu {
+    color: $ink-3;
+  }
+
+  .ge {
+    font-style: italic;
+  }
+
+  .gs {
+    font-weight: 600;
+  }
+}

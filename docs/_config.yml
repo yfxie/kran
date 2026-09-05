@@ -1,0 +1,49 @@
+title: kran
+tagline: Deploy to Kubernetes with krane, the simple way.
+description: Documentation for kran, a command line tool that wraps krane so one command builds the image, pushes it and deploys.
+url: https://kran.bincode.tw
+gem_url: https://rubygems.org/gems/kran
+repo_url: https://github.com/yfxie/kran/
+lang: en
+
+permalink: pretty
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    default_lang: text
+  # Command line flags must survive as written: without this kramdown turns
+  # `--dry-run` in a heading into an en dash.
+  typographic_symbols:
+    ndash: "--"
+    mdash: "---"
+
+# No plugins. Everything the site needs is core Jekyll, so nothing here can fall
+# outside the GitHub Pages whitelist.
+plugins: []
+
+sass:
+  style: compressed
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+      lang: en
+  - scope:
+      path: "zh-tw"
+    values:
+      layout: default
+      lang: zh-tw
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md

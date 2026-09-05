@@ -1,0 +1,100 @@
+# The single source of the sidebar, the page order and the prev/next links.
+# `path` is the English URL; the Traditional Chinese one is the same path under /zh-tw.
+- title:
+    en: Guide
+    zh-tw: 指南
+  items:
+    - path: /
+      title:
+        en: Introduction
+        zh-tw: 簡介
+    - path: /installation/
+      title:
+        en: Installation
+        zh-tw: 安裝
+    - path: /prerequisites/
+      title:
+        en: Prerequisites
+        zh-tw: 前置條件
+    - path: /getting-started/
+      title:
+        en: Getting started
+        zh-tw: 快速開始
+    - path: /configuration/
+      title:
+        en: Configuration
+        zh-tw: 設定檔
+
+- title:
+    en: Commands
+    zh-tw: 指令
+  items:
+    - path: /commands/
+      title:
+        en: Overview
+        zh-tw: 總覽
+    - path: /commands/init/
+      title:
+        en: init
+        zh-tw: init
+    - path: /commands/deploy/
+      title:
+        en: deploy
+        zh-tw: deploy
+    - path: /commands/build/
+      title:
+        en: build
+        zh-tw: build
+    - path: /commands/logs/
+      title:
+        en: logs
+        zh-tw: logs
+    - path: /commands/exec/
+      title:
+        en: exec
+        zh-tw: exec
+    - path: /commands/details/
+      title:
+        en: details
+        zh-tw: details
+    - path: /commands/audit/
+      title:
+        en: audit
+        zh-tw: audit
+    - path: /commands/version/
+      title:
+        en: version
+        zh-tw: version
+    - path: /aliases/
+      title:
+        en: Aliases
+        zh-tw: 別名
+
+- title:
+    en: Reference
+    zh-tw: 參考
+  items:
+    - path: /image-tags/
+      title:
+        en: Image tags
+        zh-tw: Image tag
+    - path: /remote-builder/
+      title:
+        en: Remote builder
+        zh-tw: 遠端 builder
+    - path: /secrets/
+      title:
+        en: Secrets
+        zh-tw: 機密資料
+    - path: /templates/
+      title:
+        en: krane templates
+        zh-tw: krane 模板
+    - path: /destinations/
+      title:
+        en: Destinations
+        zh-tw: 多環境
+    - path: /faq/
+      title:
+        en: FAQ
+        zh-tw: 常見問題

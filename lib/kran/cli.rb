@@ -1,0 +1,5 @@
+require "active_support/core_ext/hash/keys"
+require "kran/cli/base"
+require "kran/cli/build"
+require "kran/cli/alias_command"
+require "kran/cli/main"

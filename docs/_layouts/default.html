@@ -1,0 +1,81 @@
+{%- comment -%}
+Language pairing without a plugin: every Traditional Chinese page lives at the
+English path under /zh-tw, so the counterpart URL is one prefix away.
+{%- endcomment -%}
+{%- if page.lang == 'zh-tw' -%}
+  {%- assign lang_prefix = '/zh-tw' -%}
+  {%- assign other_lang = 'en' -%}
+  {%- assign other_url = page.url | remove_first: '/zh-tw' -%}
+  {%- if other_url == '' -%}{%- assign other_url = '/' -%}{%- endif -%}
+{%- else -%}
+  {%- assign lang_prefix = '' -%}
+  {%- assign other_lang = 'zh-tw' -%}
+  {%- assign other_url = '/zh-tw' | append: page.url -%}
+{%- endif -%}
+{%- assign t = site.data.ui[page.lang] -%}
+<!DOCTYPE html>
+<html lang="{% if page.lang == 'zh-tw' %}zh-Hant-TW{% else %}en{% endif %}">
+<head>
+{%- include head.html -%}
+</head>
+<body class="{% if page.sidebar == false %}no-sidebar{% endif %}" data-copy="{{ t.copy }}" data-copied="{{ t.copied }}">
+<a class="skip" href="#content">{{ t.skip }}</a>
+
+<header class="masthead">
+  <div class="shell masthead-inner">
+    {%- if page.sidebar != false %}
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="sidebar">{{ t.menu }}</button>
+    {%- endif %}
+    <a class="wordmark" href="{{ lang_prefix | append: '/' | relative_url }}">
+      {%- include icons.html name="kran" -%}
+      <span class="wordmark-name">kran</span>
+      <span class="wordmark-kind">{{ t.docs }}</span>
+    </a>
+    <nav class="masthead-links" aria-label="{{ t.on_this_site }}">
+      <a href="{{ site.repo_url }}" rel="noopener">{%- include icons.html name="github" -%}<span>{{ t.repo }}</span></a>
+      <a href="{{ site.gem_url }}" rel="noopener">{%- include icons.html name="rubygems" -%}<span>{{ t.gem }}</span></a>
+      <a class="lang-switch" href="{{ other_url | relative_url }}" hreflang="{{ other_lang }}" title="{{ t.switch_title }}">{{ t.switch_label }}</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page shell">
+  {%- if page.sidebar != false %}
+  <aside class="sidebar" id="sidebar">
+    <nav aria-label="{{ t.on_this_site }}">
+      {%- for group in site.data.nav %}
+      <p class="side-group">{{ group.title[page.lang] }}</p>
+      <ul class="side-list">
+        {%- for item in group.items %}
+        {%- assign item_url = lang_prefix | append: item.path %}
+        <li><a href="{{ item_url | relative_url }}"{% if item_url == page.url %} class="current" aria-current="page"{% endif %}>{{ item.title[page.lang] }}</a></li>
+        {%- endfor %}
+      </ul>
+      {%- endfor %}
+    </nav>
+  </aside>
+  {%- endif %}
+
+  <main class="content" id="content">
+    {{ content }}
+    {%- if page.sidebar != false %}
+    {%- include pager.html %}
+    {%- endif %}
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <span>{{ t.edit_note }}</span>
+    <span class="footer-links">
+      <a href="{{ site.repo_url }}" rel="noopener">{%- include icons.html name="github" -%}<span>{{ site.repo_url | remove: 'https://' | split: '/' | join: '/' }}</span></a>
+      <a href="{{ site.gem_url }}" rel="noopener">{%- include icons.html name="rubygems" -%}<span>{{ site.gem_url | remove: 'https://' }}</span></a>
+    </span>
+  </div>
+</footer>
+
+<script>
+{%- include app.js %}
+</script>
+</body>
+</html>

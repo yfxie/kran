@@ -1,0 +1,149 @@
+@use "variables" as *;
+
+.shell {
+  max-width: $shell;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: $bg;
+  border-bottom: 1px solid $line;
+}
+
+.masthead-inner {
+  height: $nav-h;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  border: 0;
+  color: $ink;
+}
+
+.wordmark-name {
+  font: 600 16px/1 $mono;
+  letter-spacing: -0.02em;
+}
+
+.wordmark-kind {
+  font: 500 10px/1 $mono;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-3;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  display: block;
+}
+
+.icon-kran {
+  width: 22px;
+  height: 22px;
+  color: $accent;
+}
+
+.masthead-links {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.masthead-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: $ink-2;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 6px 9px;
+  line-height: 1;
+
+  &:hover {
+    color: $ink;
+    background: $surface-2;
+  }
+}
+
+.lang-switch {
+  border-color: $line !important;
+  color: $accent-text !important;
+
+  &:hover {
+    background: $accent-wash !important;
+    border-color: $accent-line !important;
+  }
+}
+
+.menu-toggle {
+  display: none;
+  font: 500 12px/1 $sans;
+  color: $ink-2;
+  background: $surface;
+  border: 1px solid $line;
+  border-radius: 6px;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+.page {
+  display: grid;
+  grid-template-columns: $side-w minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+}
+
+body.no-sidebar .page {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+
+.footer {
+  border-top: 1px solid $line;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 32px;
+  font-size: 12.5px;
+  color: $ink-3;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: $ink-3;
+    text-decoration: none;
+
+    &:hover {
+      color: $ink;
+    }
+  }
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}

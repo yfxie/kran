@@ -1,0 +1,320 @@
+@use "variables" as *;
+
+.content {
+  max-width: $measure;
+  padding: 38px 0 80px;
+  min-width: 0;
+
+  h1 {
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    margin: 0 0 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.006em;
+    line-height: 1.35;
+    margin: 44px 0 12px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 30px 0 8px;
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 24px 0 6px;
+  }
+
+  p,
+  ul,
+  ol {
+    margin: 0 0 16px;
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+  }
+
+  li {
+    margin: 4px 0;
+
+    > ul,
+    > ol {
+      margin: 4px 0;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  // The underline belongs to prose links only. A link that draws its own box
+  // -- a button, a card, a pager entry -- carries a class and owns all four of
+  // its borders, so it is excluded here instead of having to outrank this rule.
+  a:not([class]) {
+    color: $accent-text;
+    border-bottom: 1px solid $accent-line;
+
+    &:hover {
+      border-bottom-color: $accent;
+      background: $accent-wash;
+    }
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid $line;
+    margin: 40px 0;
+  }
+
+  blockquote {
+    margin: 0 0 20px;
+    padding: 12px 16px;
+    border: 1px solid $line;
+    border-left: 2px solid $line-2;
+    border-radius: 0 8px 8px 0;
+    background: $surface;
+    color: $ink-2;
+    font-size: 14px;
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+body.no-sidebar .content {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding-top: 56px;
+}
+
+.lede {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: $ink-2;
+  margin: 0 0 30px !important;
+}
+
+// Small technical label above a code block: "Runs", "Output".
+.label {
+  font: 600 10px/1 $mono !important;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: $ink-3;
+  margin: 26px 0 8px !important;
+}
+
+// Man-page style signature at the top of a command page.
+.usage {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 30px;
+  padding: 11px 14px;
+  background: $surface;
+  border: 1px solid $line;
+  border-left: 2px solid $accent;
+  border-radius: 0 8px 8px 0;
+  overflow-x: auto;
+
+  b {
+    flex: none;
+    font: 600 10px/1.6 $mono;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: $ink-3;
+  }
+
+  code {
+    font: 13px/1.6 $mono;
+    white-space: pre;
+    background: none;
+    border: 0;
+    padding: 0;
+    color: $ink;
+  }
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin: 0 0 22px;
+  border: 1px solid $line;
+  border-radius: 8px;
+  background: $surface;
+}
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.content th {
+  font: 600 10px/1.4 $mono;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: $ink-3;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid $line;
+  white-space: nowrap;
+}
+
+.content td {
+  padding: 9px 14px;
+  border-bottom: 1px solid $line;
+  vertical-align: top;
+  color: $ink-2;
+}
+
+.content tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.content td code {
+  white-space: nowrap;
+  font-size: 12.5px;
+}
+
+// Option lists: the first column is the flag.
+.opts td:first-child {
+  white-space: nowrap;
+  font-family: $mono;
+  font-size: 12.5px;
+  color: $accent-text;
+
+  code {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: inherit;
+  }
+}
+
+// Home page.
+.home-lede {
+  font-size: 19px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: $ink;
+  margin: 0 0 22px !important;
+}
+
+.home-title {
+  font-size: 34px !important;
+  letter-spacing: -0.022em !important;
+}
+
+// The two scripts kran replaces. Kept in one column: side by side, the long
+// docker and krane lines are cut off exactly where they matter.
+.split figure.code {
+  margin-bottom: 16px;
+}
+
+.next-steps {
+  list-style: none !important;
+  padding: 0 !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: block;
+    padding: 12px 14px;
+    border: 1px solid $line;
+    border-radius: 8px;
+    background: $surface;
+    font-weight: 500;
+    font-size: 14px;
+    color: $ink;
+
+    &:hover {
+      border-color: $accent-line;
+      background: $accent-wash;
+    }
+  }
+
+  span {
+    display: block;
+    font-weight: 400;
+    font-size: 13px;
+    color: $ink-2;
+    margin-top: 2px;
+  }
+}
+
+// Primary navigation on the home page, directly under the lede.
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 26px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 14px;
+  border: 1px solid $line-2;
+  border-radius: 6px;
+  background: transparent;
+  color: $ink;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+
+  &:hover {
+    border-color: rgba(252, 252, 254, 0.28);
+    background: $surface-2;
+  }
+
+  &:active {
+    background: rgba(252, 252, 254, 0.07);
+  }
+
+  .icon {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.btn-primary {
+  border-color: $accent;
+  background: $accent;
+  color: $bg;
+
+  &:hover {
+    border-color: $accent-text;
+    background: $accent-text;
+  }
+
+  &:active {
+    border-color: $accent;
+    background: $accent;
+  }
+}
+
+// Directory layouts are drawn as box-art trees; dim the connectors so the
+// names carry the shape.
+.tree .highlight,
+.tree pre {
+  color: $ink-2;
+}

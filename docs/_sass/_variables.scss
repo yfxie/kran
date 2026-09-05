@@ -1,0 +1,46 @@
+// Values measured with getComputedStyle on openrouter.ai in dark mode
+// (html.dark), on the home page and on /docs/quickstart.
+//
+//   page background      rgb(3, 8, 10)
+//   elevated panel       rgb(8, 13, 15)
+//   code card            rgb(11, 12, 14), radius 8px, no border
+//   single border token  1px solid rgba(252, 252, 254, 0.08)
+//   primary text         rgb(252, 252, 254)
+//   secondary text       rgba(252, 252, 254, 0.627)
+//   nav                  56px tall, 1px bottom border, same bg as the page
+//   docs sidebar         256px column, 14px items, 8px radius on the active one
+//   code                 14px / 24px monospace, default token rgb(212, 212, 212)
+//   inline code          white at 5%, 6px radius, 2px 8px padding
+//
+// The accent is kran's own: OpenRouter's dark accent is an acid lime that
+// belongs to their brand. The alpha steps for text are raised from their
+// 0.627 / 0.44 to 0.70 / 0.55 so the small uppercase labels still clear
+// WCAG AA against the page background.
+
+$ink: #fcfcfe;
+$ink-2: rgba(252, 252, 254, 0.7);
+$ink-3: rgba(252, 252, 254, 0.55);
+
+$bg: #03080a;
+$surface: #080d0f;
+$surface-2: rgba(252, 252, 254, 0.035);
+$code-bg: #0b0c0e;
+
+$line: rgba(252, 252, 254, 0.08);
+$line-2: rgba(252, 252, 254, 0.16);
+
+$accent: #4fd8bd;
+$accent-text: #7fe6d1;
+$accent-wash: rgba(79, 216, 189, 0.1);
+$accent-line: rgba(79, 216, 189, 0.3);
+
+$sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+  "Helvetica Neue", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", Arial,
+  sans-serif;
+$mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+  "Liberation Mono", "Courier New", monospace;
+
+$nav-h: 56px;
+$side-w: 232px;
+$shell: 1160px;
+$measure: 46rem;
