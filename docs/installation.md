@@ -37,16 +37,8 @@ a krane from a different Gemfile or a global install. See
 ## Tools kran does not install
 
 Kran shells out to `docker`, `krane`, `kubectl`, and to `ejson` when a registry password comes from
-krane's encrypted secrets. None of them is a gem dependency.
+krane's encrypted secrets. None of them is a gem dependency; see
+[Prerequisites]({{ '/prerequisites/' | relative_url }}).
 
 Krane is deliberately excluded: it pulls in a large part of the Kubernetes client stack, and most
 projects already pin it in a deploy bundle of their own.
-
-Every command checks the tools it needs before running anything:
-
-```console
-$ kran deploy
-ERROR: krane is not on PATH. Install it with `gem install krane`, or add it to a Gemfile and set krane.command to `bundle exec krane`.
-```
-
-See [Prerequisites]({{ '/prerequisites/' | relative_url }}).

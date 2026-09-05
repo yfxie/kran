@@ -56,10 +56,6 @@ node，兩邊都用原生方式建。
 ## 遠端 daemon 上的多架構建置
 {: #multi-arch-on-a-remote-daemon }
 
-> **多架構能不能成，完全看遠端那台 daemon。** kran 只設 `DOCKER_HOST`，沒有別的動作，所以沒辦法
-> 像 kamal 的 buildx builder 那樣把建置拆到兩台機器上。
-{: .callout .warning }
-
 設了 `arch: [amd64, arm64]` 又指定 remote，兩個平台就得由同一台 daemon 建完，這需要以下其中之一：
 
 * 裝好 binfmt 與 QEMU（在 build 主機上跑
@@ -78,13 +74,7 @@ default*        docker
  \_ default      \_ default       running   v0.19.0    linux/amd64, linux/arm64
 ```
 
-`PLATFORMS` 兩個都列出來，多架構建置就沒問題。只部署單一架構的話，設一個就好：
-
-```yaml
-builder:
-  arch: amd64
-  remote: ssh://builder@build.internal
-```
+`PLATFORMS` 兩個都列出來，多架構建置就沒問題。只部署單一架構的話，`arch` 設一個就好。
 
 ## 遠端主機需要具備的條件
 
@@ -99,16 +89,3 @@ Client: Docker Engine - Community
 ```
 
 * 建置快取要有足夠的磁碟空間，沒有人會幫你清。
-
-## 不用遠端
-
-```yaml
-builder:
-  arch: arm64
-```
-
-```console
-$ kran build push --dry-run
-printf '%s' '[REDACTED]' | docker login ghcr.io -u acme-deploy --password-stdin
-docker build --platform linux/arm64 --push -t ghcr.io/acme/storefront:9c1f4d0b7a2e58c3d6f1b8a4e70925d3c8b1a6f2 .
-```

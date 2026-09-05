@@ -58,10 +58,6 @@ builder instance is bookkeeping with no benefit.
 
 ## Multi-arch on a remote daemon
 
-> **Multi-arch depends entirely on the remote daemon.** Kran sets `DOCKER_HOST` and nothing else,
-> so it cannot split the build across machines the way kamal's buildx builder can.
-{: .callout .warning }
-
 With `arch: [amd64, arm64]` and a remote, one daemon must build both platforms. That needs either:
 
 * binfmt and QEMU installed
@@ -80,13 +76,7 @@ default*        docker
 ```
 
 If `PLATFORMS` lists both, a multi-arch build works. When only one architecture is deployed, set
-one:
-
-```yaml
-builder:
-  arch: amd64
-  remote: ssh://builder@build.internal
-```
+one `arch`.
 
 ## Requirements on the host
 
@@ -102,16 +92,3 @@ Client: Docker Engine - Community
 ```
 
 * Enough disk for the build cache. Nothing prunes it for you.
-
-## No remote
-
-```yaml
-builder:
-  arch: arm64
-```
-
-```console
-$ kran build push --dry-run
-printf '%s' '[REDACTED]' | docker login ghcr.io -u acme-deploy --password-stdin
-docker build --platform linux/arm64 --push -t ghcr.io/acme/storefront:9c1f4d0b7a2e58c3d6f1b8a4e70925d3c8b1a6f2 .
-```

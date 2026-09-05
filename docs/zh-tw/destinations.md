@@ -15,16 +15,11 @@ config/
 ```
 {: .tree }
 
-`config/kran.yml` 一定會讀。加上 `-d staging` 就把 `config/kran.staging.yml` 疊上去，`-d eu` 則是
-疊 `config/kran.eu.yml`。
-
 ```sh
 kran deploy -d staging
 kran logs -d staging -f
 kran console -d staging
 ```
-
-不給 `-d` 就只讀 `config/kran.yml`。
 
 ## 兩個檔案
 
@@ -106,12 +101,6 @@ app:
   selector: app=<%= ["storefront", destination].compact.join("-") %>
 ```
 
-即使這樣寫，`-d NAME` 還是要求 `config/kran.NAME.yml` 存在，空檔案就夠：
-
-```sh
-: > config/kran.staging.yml
-```
-
 ## 檔案必須存在
 
 ```console
@@ -119,12 +108,14 @@ $ kran deploy -d production
 ERROR: Configuration file not found in config/kran.production.yml
 ```
 
-環境名稱打錯是該停下來的錯，所以 kran 不會默默退回基礎檔案。
+環境名稱打錯是該停下來的錯，所以 kran 不會默默退回基礎檔案。差異都交給上面的 ERB 處理時，空檔案
+就夠：
 
-## 該寫在哪一份
+```sh
+: > config/kran.staging.yml
+```
 
-屬於專案的寫基礎檔案：`image`、registry、模板目錄、krane 的執行方式、別名。屬於環境的寫多環境
-檔案：kubeconfig、context、namespace、selector，有時候還有架構。
+## 整塊覆寫
 
 staging 要推到別的 registry 的話，整個區塊覆寫：
 

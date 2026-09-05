@@ -22,8 +22,7 @@ One deploy uses the tag three times: as the docker tag, as krane's `--current-sh
 
 ## The uncommitted suffix
 
-The working tree is dirty when `git status --porcelain` prints anything. Kran then appends
-`_uncommitted_` and sixteen random hex characters.
+The working tree is dirty when `git status --porcelain` prints anything.
 
 > **The suffix is random, not a content hash.** Two builds from the same dirty tree get two
 > different tags. That guarantees a tag is never reused for different content; it is not
@@ -65,13 +64,6 @@ is shallow or detached:
 
 ```sh
 kran build push --version "$GITHUB_SHA"
-kran deploy --version "$GITHUB_SHA" -P
-```
-
-Building once and deploying the same tag to several environments:
-
-```sh
-kran deploy --version "$GITHUB_SHA" -P -d staging
 kran deploy --version "$GITHUB_SHA" -P
 ```
 

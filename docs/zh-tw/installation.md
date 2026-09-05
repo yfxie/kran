@@ -37,16 +37,7 @@ kran 呼叫外部指令時都包在 `Bundler.with_unbundled_env` 裡，所以 `b
 ## kran 不會幫你裝的工具
 
 kran 會呼叫 `docker`、`krane`、`kubectl`；當 registry 密碼要從 krane 的加密機密檔讀取時，還會用到
-`ejson`。這些都不是 gem 依賴。
+`ejson`。這些都不是 gem 依賴，各工具怎麼裝見[前置條件]({{ '/zh-tw/prerequisites/' | relative_url }})。
 
 krane 之所以刻意排除，是因為它會連帶安裝大量 Kubernetes client 相依套件，而多數專案本來就在自己的
 部署 bundle 裡鎖好版本了。
-
-每個指令動手之前都會先確認需要的工具在不在：
-
-```console
-$ kran deploy
-ERROR: krane is not on PATH. Install it with `gem install krane`, or add it to a Gemfile and set krane.command to `bundle exec krane`.
-```
-
-各工具怎麼裝，見[前置條件]({{ '/zh-tw/prerequisites/' | relative_url }})。

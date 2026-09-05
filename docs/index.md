@@ -15,7 +15,6 @@ One command builds the image, pushes it, renders the krane templates and deploys
   <a class="btn btn-primary" href="{{ '/getting-started/' | relative_url }}">Get started</a>
   <a class="btn" href="{{ '/configuration/' | relative_url }}">Configuration</a>
   <a class="btn" href="{{ '/commands/' | relative_url }}">Commands</a>
-  <a class="btn" href="{{ site.repo_url }}" rel="noopener">{% include icons.html name="github" %}GitHub</a>
 </div>
 
 *Kran* is the German word for crane, the same word behind Shopify's *krane*.
@@ -93,12 +92,3 @@ Kran writes no manifests, invents no resource types and holds no state. It build
 
 > Every command takes `--dry-run`, which prints the exact sequence and runs none of it.
 {: .callout .tip }
-
-## Next
-
-<ul class="next-steps">
-  <li><a class="card" href="{{ '/installation/' | relative_url }}">Installation<span>Install the gem and the tools it drives.</span></a></li>
-  <li><a class="card" href="{{ '/getting-started/' | relative_url }}">Getting started<span>From <code>kran init</code> to a first deploy.</span></a></li>
-  <li><a class="card" href="{{ '/configuration/' | relative_url }}">Configuration<span>Every key of <code>config/kran.yml</code>.</span></a></li>
-  <li><a class="card" href="{{ '/commands/' | relative_url }}">Commands<span>Each command and the command it runs.</span></a></li>
-</ul>

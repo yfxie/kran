@@ -113,15 +113,8 @@ spec:
 
 ## secrets.ejson
 
-`secrets.ejson` 放在模板目錄裡，但它不是模板。krane 靠檔名認出它，而且要單獨用一個 `-f` 傳進去：
-
-```text
-krane render -f config/deploy ... \
-  | krane deploy storefront prod-east \
-      -f config/deploy/secrets.ejson -
-```
-
-`<templates>/secrets.ejson` 存在時 kran 會自動帶上；放別的位置就設 `krane.secrets`，見
+`secrets.ejson` 放在模板目錄裡，但它不是模板。krane 靠檔名認出它，而且要單獨用一個 `-f` 傳進去；
+`<templates>/secrets.ejson` 存在時 kran 會自動帶上，放別的位置就設 `krane.secrets`。見
 [機密資料]({{ '/zh-tw/secrets/' | relative_url }})。
 
 ## 手動 render

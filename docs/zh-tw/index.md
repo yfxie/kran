@@ -15,7 +15,6 @@ sidebar: false
   <a class="btn btn-primary" href="{{ '/zh-tw/getting-started/' | relative_url }}">開始使用</a>
   <a class="btn" href="{{ '/zh-tw/configuration/' | relative_url }}">設定檔</a>
   <a class="btn" href="{{ '/zh-tw/commands/' | relative_url }}">指令</a>
-  <a class="btn" href="{{ site.repo_url }}" rel="noopener">{% include icons.html name="github" %}GitHub</a>
 </div>
 
 *Kran* 是德文的「起重機」，也就是 Shopify 的 *krane* 這個字的由來。
@@ -92,12 +91,3 @@ kran 不產生 manifest、不發明資源型別、也不存任何狀態，只是
 
 > 每個指令都支援 `--dry-run`，會完整印出將要執行的指令，但一行都不跑。
 {: .callout .tip }
-
-## 接下來
-
-<ul class="next-steps">
-  <li><a class="card" href="{{ '/zh-tw/installation/' | relative_url }}">安裝<span>裝好 gem 與它會用到的工具。</span></a></li>
-  <li><a class="card" href="{{ '/zh-tw/getting-started/' | relative_url }}">快速開始<span>從 <code>kran init</code> 到第一次部署。</span></a></li>
-  <li><a class="card" href="{{ '/zh-tw/configuration/' | relative_url }}">設定檔<span><code>config/kran.yml</code> 的每個欄位。</span></a></li>
-  <li><a class="card" href="{{ '/zh-tw/commands/' | relative_url }}">指令<span>每個指令實際執行的內容。</span></a></li>
-</ul>

@@ -221,42 +221,6 @@ body.no-sidebar .content {
   margin-bottom: 16px;
 }
 
-.next-steps {
-  list-style: none !important;
-  padding: 0 !important;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-
-  li {
-    margin: 0;
-  }
-
-  a {
-    display: block;
-    padding: 12px 14px;
-    border: 1px solid $line;
-    border-radius: 8px;
-    background: $surface;
-    font-weight: 500;
-    font-size: 14px;
-    color: $ink;
-
-    &:hover {
-      border-color: $accent-line;
-      background: $accent-wash;
-    }
-  }
-
-  span {
-    display: block;
-    font-weight: 400;
-    font-size: 13px;
-    color: $ink-2;
-    margin-top: 2px;
-  }
-}
-
 // Primary navigation on the home page, directly under the lede.
 .actions {
   display: flex;

@@ -57,17 +57,5 @@ API 回傳的第一個符合條件的 pod，沒有排序保證。要指定特定
 
 ## shell 與 console
 
-模板裡的兩個別名就是一般的 `kran exec`：
-
-```yaml
-aliases:
-  shell: exec --interactive bash
-  console: exec --interactive bin/rails console
-```
-
-```sh
-kran shell
-kran console
-```
-
-見[別名]({{ '/zh-tw/aliases/' | relative_url }})。
+模板裡的兩個別名就是一般的 `kran exec`，分別展開成 `exec --interactive bash` 與
+`exec --interactive bin/rails console`。見[別名]({{ '/zh-tw/aliases/' | relative_url }})。

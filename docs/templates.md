@@ -118,16 +118,8 @@ Command-line bindings are visible inside partials, so `image` need not be passed
 ## secrets.ejson
 
 `secrets.ejson` sits in the templates directory but is not a template. Krane recognises it by name
-and expects a separate `-f`:
-
-```text
-krane render -f config/deploy ... \
-  | krane deploy storefront prod-east \
-      -f config/deploy/secrets.ejson -
-```
-
-Kran finds `<templates>/secrets.ejson` automatically when it exists; set `krane.secrets` for any
-other location. See [Secrets]({{ '/secrets/' | relative_url }}).
+and expects it on a separate `-f`, which kran adds when `<templates>/secrets.ejson` exists; set
+`krane.secrets` for any other location. See [Secrets]({{ '/secrets/' | relative_url }}).
 
 ## Rendering by hand
 

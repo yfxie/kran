@@ -23,11 +23,5 @@ The file it writes is the commented template on the
 
 ## Destinations
 
-`kran init` writes the base file only. A destination file is a partial override you write by hand:
-
-```sh
-kran init
-$EDITOR config/kran.staging.yml
-```
-
-See [Destinations]({{ '/destinations/' | relative_url }}).
+`kran init` writes the base file only. A destination file such as `config/kran.staging.yml` is a
+partial override you write by hand. See [Destinations]({{ '/destinations/' | relative_url }}).

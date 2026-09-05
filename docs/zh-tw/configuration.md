@@ -126,7 +126,7 @@ kubernetes:
 ```
 
 `kubeconfig` 會做路徑展開，所以 `~` 可以用；設了它，kran 就不受你上次選了哪個 context 影響，也不會
-去動它。krane 要的參數順序是 `krane deploy <namespace> <context>`，kran 會自動填好。
+去動它。
 
 ## krane
 

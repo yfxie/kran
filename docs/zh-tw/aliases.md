@@ -20,8 +20,7 @@ kran shell
 kran console
 ```
 
-`kran shell` 就是 `kran exec --interactive bash`，`kran console` 就是
-`kran exec --interactive bin/rails console`，名字沿用 kamal 的習慣。
+名字沿用 kamal 的習慣。
 
 image 裡沒有 `bash` 的話：
 
@@ -49,8 +48,6 @@ aliases:
 $ kran migrate --trace --dry-run
 ... exec "$pod" -- bin/rails db:migrate --trace
 ```
-
-別名是前綴，不是寫死的指令。
 
 ## 搭配多環境使用
 

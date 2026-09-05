@@ -57,17 +57,5 @@ use `kubectl exec` with a name from `kran details`.
 
 ## shell and console
 
-The template's two aliases are ordinary `kran exec` calls:
-
-```yaml
-aliases:
-  shell: exec --interactive bash
-  console: exec --interactive bin/rails console
-```
-
-```sh
-kran shell
-kran console
-```
-
-See [Aliases]({{ '/aliases/' | relative_url }}).
+The template's two aliases are ordinary `kran exec` calls: `exec --interactive bash` and
+`exec --interactive bin/rails console`. See [Aliases]({{ '/aliases/' | relative_url }}).

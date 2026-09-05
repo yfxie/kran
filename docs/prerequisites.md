@@ -5,8 +5,7 @@ description: The tools kran drives, the kubeconfig and context it needs, and how
 
 # Prerequisites
 
-Kran drives four external programs. This page is the checklist; each one links to the reference
-page that goes deeper.
+Kran drives four external programs.
 
 | Tool | Why kran needs it | Install |
 | --- | --- | --- |

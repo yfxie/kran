@@ -64,12 +64,6 @@ printf '%s' '[REDACTED]' | DOCKER_HOST=ssh://builder@build.internal docker login
 DOCKER_HOST=ssh://builder@build.internal docker build --platform linux/amd64 --push -t ghcr.io/acme/storefront:9c1f4d0b7a2e58c3d6f1b8a4e70925d3c8b1a6f2 .
 ```
 
-## --dry-run
-
-Prints the command sequence, runs nothing, and does not require docker, krane or kubectl. The
-`printf '%s' '[REDACTED]' |` prefix shows that the password reaches `docker login` on standard
-input, never a command line.
-
 ## -P, --skip-push
 
 ```console
@@ -89,21 +83,5 @@ previous tag.
 
 ## --version
 
-Overrides the tag. Outside a git repository it is the only way to deploy:
-
-```console
-$ kran deploy
-ERROR: Git could not provide an image tag in /srv/build: Command failed (exit 128): git rev-parse HEAD
-fatal: not a git repository (or any of the parent directories): .git
-Pass --version to set the tag explicitly.
-$ kran deploy --version v2.4.0
-```
-
-## Missing tools
-
-```console
-$ kran deploy
-ERROR: krane is not on PATH. Install it with `gem install krane`, or add it to a Gemfile and set krane.command to `bundle exec krane`.
-```
-
-With `krane.command: bundle exec krane` the check applies to `bundle`, the program kran starts.
+Overrides the tag. Outside a git repository it is the only way to deploy. See
+[Image tags]({{ '/image-tags/' | relative_url }}).

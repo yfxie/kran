@@ -20,8 +20,7 @@ kran shell
 kran console
 ```
 
-`kran shell` is `kran exec --interactive bash`; `kran console` is
-`kran exec --interactive bin/rails console`. They carry kamal's names.
+The names come from kamal.
 
 If your image has no `bash`:
 
@@ -49,8 +48,6 @@ The value is the rest of a kran command line, split with shell word rules.
 $ kran migrate --trace --dry-run
 ... exec "$pod" -- bin/rails db:migrate --trace
 ```
-
-An alias is a prefix, not a fixed command.
 
 ## With destinations
 

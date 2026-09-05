@@ -60,11 +60,6 @@ printf '%s' '[REDACTED]' | DOCKER_HOST=ssh://builder@build.internal docker login
 DOCKER_HOST=ssh://builder@build.internal docker build --platform linux/amd64 --push -t ghcr.io/acme/storefront:9c1f4d0b7a2e58c3d6f1b8a4e70925d3c8b1a6f2 .
 ```
 
-## --dry-run
-
-印出整串指令，什麼都不執行，也不需要裝 docker、krane、kubectl。前面的
-`printf '%s' '[REDACTED]' |` 表示密碼是從標準輸入送進 `docker login`，不會出現在命令列上。
-
 ## -P、--skip-push
 
 ```console
@@ -83,21 +78,5 @@ kran deploy --version 9c1f4d0b7a2e58c3d6f1b8a4e70925d3c8b1a6f2 -P -d staging
 
 ## --version
 
-直接指定 tag。不在 git repository 裡時，這是唯一能部署的辦法：
-
-```console
-$ kran deploy
-ERROR: Git could not provide an image tag in /srv/build: Command failed (exit 128): git rev-parse HEAD
-fatal: not a git repository (or any of the parent directories): .git
-Pass --version to set the tag explicitly.
-$ kran deploy --version v2.4.0
-```
-
-## 工具沒安裝時
-
-```console
-$ kran deploy
-ERROR: krane is not on PATH. Install it with `gem install krane`, or add it to a Gemfile and set krane.command to `bundle exec krane`.
-```
-
-設成 `krane.command: bundle exec krane` 時，檢查的對象是 `bundle`，因為那才是 kran 實際啟動的程式。
+直接指定 tag。不在 git repository 裡時，這是唯一能部署的辦法，見
+[Image tag]({{ '/zh-tw/image-tags/' | relative_url }})。

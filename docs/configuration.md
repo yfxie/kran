@@ -133,8 +133,7 @@ kubernetes:
 ```
 
 `kubeconfig` is expanded, so `~` works. Setting it means kran ignores whichever context you last
-selected, and never changes it. Krane's argument order is `krane deploy <namespace> <context>`, and
-kran fills both in.
+selected, and never changes it.
 
 ## krane
 

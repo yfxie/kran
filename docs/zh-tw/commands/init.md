@@ -22,11 +22,5 @@ config/kran.yml already exists (remove it first to create a new one)
 
 ## 多環境
 
-`kran init` 只產生基礎檔案。多環境的檔案是你自己寫的部分覆寫：
-
-```sh
-kran init
-$EDITOR config/kran.staging.yml
-```
-
+`kran init` 只產生基礎檔案。多環境的檔案（例如 `config/kran.staging.yml`）是你自己寫的部分覆寫，
 見[多環境]({{ '/zh-tw/destinations/' | relative_url }})。

@@ -22,8 +22,7 @@ ghcr.io/acme/storefront:v2.4.0
 
 ## uncommitted 後綴
 
-只要 `git status --porcelain` 有輸出，工作目錄就算不乾淨，kran 會補上 `_uncommitted_` 和十六位隨機
-十六進位字元。
+只要 `git status --porcelain` 有輸出，工作目錄就算不乾淨。
 
 > **後綴是隨機值，不是內容雜湊。** 同一個不乾淨的工作目錄建置兩次，會得到兩個不同的 tag。這保證
 > 同一個 tag 不會對應到不同內容，而不是拿來去重的。kamal 也是這樣做。
@@ -63,13 +62,6 @@ CI 的 checkout 是乾淨的，推導出來就是 commit sha。checkout 是 shal
 
 ```sh
 kran build push --version "$GITHUB_SHA"
-kran deploy --version "$GITHUB_SHA" -P
-```
-
-建置一次、同一個 tag 部署到多個環境：
-
-```sh
-kran deploy --version "$GITHUB_SHA" -P -d staging
 kran deploy --version "$GITHUB_SHA" -P
 ```
 

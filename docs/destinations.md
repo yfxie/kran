@@ -15,16 +15,11 @@ config/
 ```
 {: .tree }
 
-`config/kran.yml` is always read. `-d staging` layers `config/kran.staging.yml` on top of it, and
-`-d eu` layers `config/kran.eu.yml`.
-
 ```sh
 kran deploy -d staging
 kran logs -d staging -f
 kran console -d staging
 ```
-
-Without `-d`, only `config/kran.yml` is read.
 
 ## The two files
 
@@ -106,12 +101,6 @@ app:
   selector: app=<%= ["storefront", destination].compact.join("-") %>
 ```
 
-`-d NAME` still requires `config/kran.NAME.yml` to exist. An empty file is enough:
-
-```sh
-: > config/kran.staging.yml
-```
-
 ## The file must exist
 
 ```console
@@ -120,12 +109,13 @@ ERROR: Configuration file not found in config/kran.production.yml
 ```
 
 A typo in a destination name is worth stopping for, so kran does not fall back to the base file.
+When the ERB above already does the work, an empty file is enough:
 
-## What goes where
+```sh
+: > config/kran.staging.yml
+```
 
-The base file: `image`, the registry, the template directory, how krane is run, the aliases. The
-destination file: the kubeconfig, the context, the namespace, the selector, sometimes the
-architecture.
+## Overriding a section
 
 To push staging to a different registry, override the whole section:
 
