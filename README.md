@@ -1,5 +1,10 @@
 # kran
 
+[![Gem Version](https://img.shields.io/gem/v/kran)](https://rubygems.org/gems/kran)
+[![CI](https://github.com/yfxie/kran/actions/workflows/ci.yml/badge.svg)](https://github.com/yfxie/kran/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/yfxie/kran/badge.svg?branch=main)](https://coveralls.io/github/yfxie/kran?branch=main)
+[![License](https://img.shields.io/github/license/yfxie/kran)](LICENSE)
+
 Deploy to Kubernetes with [krane](https://github.com/Shopify/krane), the simple way.
 One command builds the image, pushes it, renders the krane templates and deploys them. A few more
 commands cover the daily work: logs, exec, details, audit.
@@ -34,7 +39,6 @@ If you have used [kamal](https://kamal-deploy.org), this will feel just as simpl
 one config file, one command to deploy.
 
 Documentation: https://kran.bincode.tw
-Source: https://github.com/yfxie/kran
 
 ## Develop
 

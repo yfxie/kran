@@ -5,3 +5,4 @@ gemspec
 gem "minitest"
 gem "rake"
 gem "rubocop-shopify", require: false
+gem "simplecov", require: false
