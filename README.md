@@ -9,8 +9,6 @@ Deploy to Kubernetes with [krane](https://github.com/Shopify/krane), the simple 
 One command builds the image, pushes it, renders the krane templates and deploys them. A few more
 commands cover the daily work: logs, exec, details, audit.
 
-Kran is the German word for crane.
-
 ## Install
 
 ```sh
