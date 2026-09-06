@@ -71,5 +71,9 @@ module Kran
     def aliases
       @raw.fetch("aliases", {})
     end
+
+    def env
+      @raw.fetch("env", {}).transform_values(&:to_s)
+    end
   end
 end

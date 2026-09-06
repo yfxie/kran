@@ -46,8 +46,8 @@ module Kran
 
       def kubectl(*args)
         kubernetes = @config.kubernetes
-        command = Shell.join(["kubectl", "--context", kubernetes.context, "--namespace", kubernetes.namespace, *args.compact])
-        kubernetes.kubeconfig ? "KUBECONFIG=#{Shell.escape(kubernetes.kubeconfig)} #{command}" : command
+        env = @config.env.merge({ "KUBECONFIG" => kubernetes.kubeconfig }.compact)
+        Shell.with_env(env, Shell.join(["kubectl", "--context", kubernetes.context, "--namespace", kubernetes.namespace, *args.compact]))
       end
     end
   end

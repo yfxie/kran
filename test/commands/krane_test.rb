@@ -37,6 +37,15 @@ class KraneCommandsTest < ActiveSupport::TestCase
     end
   end
 
+  test "env variables come before KUBECONFIG on render and deploy" do
+    with_config(BASIC_CONFIG + "env:\n  CLOUDSDK_ACTIVE_CONFIG_NAME: acme\n") do
+      assert_equal "CLOUDSDK_ACTIVE_CONFIG_NAME=acme krane render -f config/deploy --current-sha abc123 " \
+        "--bindings image=ghcr.io/my-user/my-app:abc123", krane.render("abc123")
+      assert_equal "CLOUDSDK_ACTIVE_CONFIG_NAME=acme KUBECONFIG=#{File.expand_path("~/.kube/my-cluster.yml")} " \
+        "krane deploy my-app my-cluster -f -", krane.deploy
+    end
+  end
+
   private
 
   def krane

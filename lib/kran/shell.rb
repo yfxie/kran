@@ -15,5 +15,10 @@ module Kran
     def join(words)
       words.map { |word| escape(word) }.join(" ")
     end
+
+    def with_env(env, command)
+      assignments = env.map { |name, value| "#{name}=#{escape(value)}" }
+      [*assignments, command].join(" ")
+    end
   end
 end

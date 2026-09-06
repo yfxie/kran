@@ -42,6 +42,17 @@ class DockerCommandsTest < ActiveSupport::TestCase
     end
   end
 
+  test "env variables come before DOCKER_HOST on every command" do
+    yaml = BASIC_CONFIG.sub("arch: amd64", "arch: amd64\n  remote: ssh://build@builder") +
+      "env:\n  CLOUDSDK_ACTIVE_CONFIG_NAME: acme\n  DOCKER_CONFIG: /srv/docker/acme\n"
+    with_config(yaml) do
+      assert_equal "CLOUDSDK_ACTIVE_CONFIG_NAME=acme DOCKER_CONFIG=/srv/docker/acme DOCKER_HOST=ssh://build@builder " \
+        "docker build --platform linux/amd64 --push -t ghcr.io/my-user/my-app:abc123 .", docker.build("abc123")
+      assert_equal "CLOUDSDK_ACTIVE_CONFIG_NAME=acme DOCKER_CONFIG=/srv/docker/acme DOCKER_HOST=ssh://build@builder " \
+        "docker version", docker.version
+    end
+  end
+
   private
 
   def docker

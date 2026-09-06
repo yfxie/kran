@@ -58,6 +58,12 @@ app:
   # Container inside the pod (kubectl -c). Defaults to the pod's default container.
   # container: web
 
+# Environment variables put in front of every docker, krane and kubectl command, for settings those
+# tools read from the environment: which cloud account docker's credential helper and kubectl's
+# auth plugin sign in with, for example.
+# env:
+#   CLOUDSDK_ACTIVE_CONFIG_NAME: acme
+
 # Shortcuts run with `kran <alias>`. Extra arguments are appended to the command.
 aliases:
   shell: exec --interactive bash
@@ -171,6 +177,27 @@ app:
 > `selector` must match the labels your krane templates put on the application pods. Nothing
 > checks that for you, and a mismatch shows up as `kran logs` printing nothing.
 {: .callout .warning }
+
+## env
+
+Environment variables put in front of every docker, krane and kubectl command. They are for
+settings those tools read from the environment rather than from their arguments: which cloud
+account docker's credential helper and kubectl's auth plugin sign in with, which docker
+configuration directory to use.
+
+```yaml
+env:
+  CLOUDSDK_ACTIVE_CONFIG_NAME: acme
+```
+
+```console
+$ kran details --dry-run
+CLOUDSDK_ACTIVE_CONFIG_NAME=acme KUBECONFIG=/home/dana/.kube/prod-east.yml kubectl --context prod-east --namespace storefront get all -o wide
+```
+
+Kran's own `KUBECONFIG` and `DOCKER_HOST` come after yours, so they win on a clash. `git` and
+`ejson` do not get these variables. `--dry-run` prints the values as they are, so a registry
+password belongs in `registry.password`, not here.
 
 ## aliases
 

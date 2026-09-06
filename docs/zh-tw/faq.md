@@ -163,6 +163,19 @@ kran logs --dry-run
 不會。它在每個 kubectl 指令上帶 `--context` 與 `--namespace`；有設 `kubernetes.kubeconfig` 時再加上
 `KUBECONFIG=` 前綴。
 
+## 用另一個 gcloud 或 AWS 帳號部署
+
+docker 的 credential helper 與 kubectl 的 auth plugin 都從環境變數讀帳號：Artifact Registry 與 GKE 看
+`CLOUDSDK_ACTIVE_CONFIG_NAME`，ECR 與 EKS 看 `AWS_PROFILE`。寫進 `env`，每個 docker、krane 與 kubectl
+指令都會帶上，不用每次在命令列前面加：
+
+```yaml
+env:
+  CLOUDSDK_ACTIVE_CONFIG_NAME: acme
+```
+
+見 [env]({{ '/zh-tw/configuration/' | relative_url }}#env)。
+
 ## 還可以直接用 krane 和 kubectl 嗎
 
 可以。從 `kran deploy --dry-run` 把前綴複製走：

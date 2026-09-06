@@ -28,9 +28,8 @@ module Kran
       private
 
       def docker(*args)
-        command = Shell.join(["docker", *args.compact])
-        remote = @config.builder.remote
-        remote ? "DOCKER_HOST=#{Shell.escape(remote)} #{command}" : command
+        env = @config.env.merge({ "DOCKER_HOST" => @config.builder.remote }.compact)
+        Shell.with_env(env, Shell.join(["docker", *args.compact]))
       end
 
       def platform(archs)

@@ -53,6 +53,13 @@ class KubectlCommandsTest < ActiveSupport::TestCase
     end
   end
 
+  test "env variables come before KUBECONFIG on every command" do
+    with_config(BASIC_CONFIG + "env:\n  CLOUDSDK_ACTIVE_CONFIG_NAME: acme\n") do
+      assert_equal "CLOUDSDK_ACTIVE_CONFIG_NAME=acme #{KUBECTL} get all -o wide", kubectl.details
+      assert_includes kubectl.exec(["ls"]), "pod=$(CLOUDSDK_ACTIVE_CONFIG_NAME=acme #{KUBECTL} get pods"
+    end
+  end
+
   private
 
   def kubectl

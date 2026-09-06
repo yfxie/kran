@@ -46,6 +46,12 @@ app:
   # Container inside the pod (kubectl -c). Defaults to the pod's default container.
   # container: web
 
+# Environment variables put in front of every docker, krane and kubectl command, for settings those
+# tools read from the environment: which cloud account docker's credential helper and kubectl's
+# auth plugin sign in with, for example.
+# env:
+#   CLOUDSDK_ACTIVE_CONFIG_NAME: acme
+
 # Shortcuts run with `kran <alias>`. Extra arguments are appended to the command.
 aliases:
   shell: exec --interactive bash

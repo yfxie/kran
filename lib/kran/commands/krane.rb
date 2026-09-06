@@ -18,8 +18,7 @@ module Kran
         # krane parses options with Thor, where a repeated -f replaces the earlier one
         # instead of appending to it, so every file has to follow a single -f.
         files = [@config.krane.secrets, "-"].compact
-        command = krane("deploy", kubernetes.namespace, kubernetes.context, "-f", *files)
-        kubernetes.kubeconfig ? "KUBECONFIG=#{Shell.escape(kubernetes.kubeconfig)} #{command}" : command
+        krane("deploy", kubernetes.namespace, kubernetes.context, "-f", *files, kubeconfig: kubernetes.kubeconfig)
       end
 
       def pipeline(tag)
@@ -36,8 +35,9 @@ module Kran
 
       private
 
-      def krane(*args)
-        "#{@config.krane.command} #{Shell.join(args)}"
+      def krane(*args, kubeconfig: nil)
+        env = @config.env.merge({ "KUBECONFIG" => kubeconfig }.compact)
+        Shell.with_env(env, "#{@config.krane.command} #{Shell.join(args)}")
       end
     end
   end

@@ -129,6 +129,19 @@ registry:
 
 `registry` 是 hash，逐鍵合併，所以少寫 `username` 就會沿用基礎檔案的 `acme-deploy`。
 
+## 環境在另一個雲端帳號
+
+docker 的 credential helper 與 kubectl 的 auth plugin 從環境變數決定用哪個帳號，所以住在另一個帳號的
+環境把它寫進 `env`：
+
+```yaml
+# config/kran.staging.yml
+env:
+  CLOUDSDK_ACTIVE_CONFIG_NAME: acme-staging
+```
+
+ECR 與 EKS 的 `AWS_PROFILE` 也是同樣做法，見 [env]({{ '/zh-tw/configuration/' | relative_url }}#env)。
+
 ## 別名
 
 別名是合併之後才讀的，所以多環境檔案可以加或換掉其中一個：

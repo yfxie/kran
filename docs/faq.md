@@ -1,6 +1,6 @@
 ---
 title: FAQ
-description: Missing tools, deploying outside a git repository, protected namespaces, registry login, ejson-keys, multi-arch remote builds, exec flags and bundle exec.
+description: Missing tools, deploying outside a git repository, protected namespaces, registry login, ejson-keys, multi-arch remote builds, exec flags, bundle exec and cloud accounts.
 ---
 
 # FAQ
@@ -164,6 +164,20 @@ kran logs --dry-run
 
 No. It passes `--context` and `--namespace` on every kubectl command and, with
 `kubernetes.kubeconfig` set, prefixes them with `KUBECONFIG=`.
+
+## Deploying with another gcloud or AWS account
+
+Docker's credential helper and kubectl's auth plugin both read the account from the environment:
+`CLOUDSDK_ACTIVE_CONFIG_NAME` for Artifact Registry and GKE, `AWS_PROFILE` for ECR and EKS. Put it
+in `env` and every docker, krane and kubectl command gets it, without prefixing it on the command
+line each time:
+
+```yaml
+env:
+  CLOUDSDK_ACTIVE_CONFIG_NAME: acme
+```
+
+See [env]({{ '/configuration/' | relative_url }}#env).
 
 ## Can I still use krane and kubectl directly
 

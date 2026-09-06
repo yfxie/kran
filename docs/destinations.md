@@ -129,6 +129,20 @@ registry:
 
 `registry` is a hash, so leaving out `username` would inherit `acme-deploy` from the base file.
 
+## A destination in another cloud account
+
+Docker's credential helper and kubectl's auth plugin pick their account from the environment, so a
+destination that lives in another account sets it in `env`:
+
+```yaml
+# config/kran.staging.yml
+env:
+  CLOUDSDK_ACTIVE_CONFIG_NAME: acme-staging
+```
+
+The same works for `AWS_PROFILE` with ECR and EKS. See
+[env]({{ '/configuration/' | relative_url }}#env).
+
 ## Aliases
 
 Aliases are read after the merge, so a destination file can add or replace one:

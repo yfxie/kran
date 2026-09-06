@@ -58,6 +58,12 @@ app:
   # Container inside the pod (kubectl -c). Defaults to the pod's default container.
   # container: web
 
+# Environment variables put in front of every docker, krane and kubectl command, for settings those
+# tools read from the environment: which cloud account docker's credential helper and kubectl's
+# auth plugin sign in with, for example.
+# env:
+#   CLOUDSDK_ACTIVE_CONFIG_NAME: acme
+
 # Shortcuts run with `kran <alias>`. Extra arguments are appended to the command.
 aliases:
   shell: exec --interactive bash
@@ -163,6 +169,25 @@ app:
 > `selector` 必須和 krane 模板加在應用程式 pod 上的 label 對得起來。沒有機制會替你檢查，對不上的
 > 症狀就是 `kran logs` 什麼都撈不到。
 {: .callout .warning }
+
+## env
+
+加在每個 docker、krane 與 kubectl 指令前面的環境變數，給那些工具不從參數、而是從環境讀取的設定用：
+docker 的 credential helper 與 kubectl 的 auth plugin 要用哪個雲端帳號登入、docker 要用哪個設定目錄。
+
+```yaml
+env:
+  CLOUDSDK_ACTIVE_CONFIG_NAME: acme
+```
+
+```console
+$ kran details --dry-run
+CLOUDSDK_ACTIVE_CONFIG_NAME=acme KUBECONFIG=/home/dana/.kube/prod-east.yml kubectl --context prod-east --namespace storefront get all -o wide
+```
+
+kran 自己的 `KUBECONFIG` 與 `DOCKER_HOST` 排在你的變數之後，撞名時以 kran 的為準。`git` 與 `ejson`
+不會拿到這些變數。`--dry-run` 會原樣印出變數值，所以 registry 密碼請放 `registry.password`，不要放
+這裡。
 
 ## aliases
 

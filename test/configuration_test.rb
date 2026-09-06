@@ -28,6 +28,16 @@ class ConfigurationTest < ActiveSupport::TestCase
       assert_equal "krane", config.krane.command
       assert_nil config.app.container
       assert_empty config.aliases
+      assert_empty config.env
+    end
+  end
+
+  test "env values are strings and destination files add to them" do
+    base = BASIC_CONFIG + "env:\n  CLOUDSDK_ACTIVE_CONFIG_NAME: acme\n  BUILDKIT_PROGRESS: plain\n"
+    staging = "env:\n  CLOUDSDK_ACTIVE_CONFIG_NAME: acme-staging\n  DOCKER_BUILDKIT: 1\n"
+    with_config(base, "config/kran.staging.yml" => staging) do
+      assert_equal({ "CLOUDSDK_ACTIVE_CONFIG_NAME" => "acme-staging", "BUILDKIT_PROGRESS" => "plain",
+                     "DOCKER_BUILDKIT" => "1" }, Kran::Configuration.load(destination: "staging").env)
     end
   end
 
